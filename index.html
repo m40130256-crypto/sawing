@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>國中七年級家政【生活新人王】形成性評量互動測驗</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Canvas Confetti for Score Celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: #f8fafc;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between selection:bg-teal-500 selection:text-white">
+
+  <!-- Header Header -->
+  <header class="bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-700 text-white shadow-lg sticky top-0 z-30">
+    <div class="max-w-5xl mx-auto px-4 py-3.5 flex justify-between items-center">
+      <div class="flex items-center gap-3 cursor-pointer" onclick="goHome()">
+        <div class="bg-white/20 p-2.5 rounded-xl backdrop-blur-sm">
+          <i class="fa-solid fa-graduation-cap text-2xl text-amber-300"></i>
+        </div>
+        <div>
+          <h1 class="text-lg md:text-xl font-bold tracking-wide">生活新人王 · 互動測驗系統</h1>
+          <p class="text-xs text-teal-100 font-medium">國中七年級綜合活動領域家政教材（第1–3單元）</p>
+        </div>
+      </div>
+      <button onclick="goHome()" class="text-xs md:text-sm bg-white/10 hover:bg-white/20 text-white font-medium px-3.5 py-1.5 rounded-lg border border-white/20 transition flex items-center gap-1.5">
+        <i class="fa-solid fa-house"></i> 主選單
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-5xl mx-auto px-4 py-6 flex-grow w-full">
+
+    <!-- SCREEN 1: Home / Mode Selection -->
+    <div id="home-screen" class="space-y-6">
+      <!-- Welcome Card -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200/80 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+          <i class="fa-solid fa-shirt text-[220px] text-teal-800"></i>
+        </div>
+        <div class="max-w-2xl">
+          <span class="inline-block px-3 py-1 bg-teal-100 text-teal-800 text-xs font-bold rounded-full mb-3">
+            <i class="fa-solid fa-circle-check text-teal-600 mr-1"></i> 依據七年級家政最新課本內容編製
+          </span>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight leading-tight mb-3">
+            展現生活好智慧，挑戰成為「生活新人王」！
+          </h2>
+          <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+            本評量涵蓋「第1單元形象好手」、「第2單元縫紉巧手」與「第3單元改造高手」，包含概念理解、情境判斷與實務應用題型，協助你掌握個人形象保養、基礎手縫與永續舊衣改造核心技能！
+          </p>
+
+          <!-- Quick Stats -->
+          <div class="grid grid-cols-3 gap-3 pt-2 border-t border-slate-100 text-center">
+            <div class="p-2">
+              <span class="block text-2xl font-black text-teal-600">30</span>
+              <span class="text-xs text-slate-500 font-medium">精選評量題</span>
+            </div>
+            <div class="p-2 border-x border-slate-100">
+              <span class="block text-2xl font-black text-amber-500">3</span>
+              <span class="text-xs text-slate-500 font-medium">核心學習單元</span>
+            </div>
+            <div class="p-2">
+              <span class="block text-2xl font-black text-indigo-600">100%</span>
+              <span class="text-xs text-slate-500 font-medium">詳盡課本解析</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode Selection Grid -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-compass text-teal-600"></i> 請選擇測驗模式
+        </h3>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <!-- Option 1: Full 30 Questions Test -->
+          <div onclick="startQuiz('all')" class="bg-white p-5 rounded-2xl border-2 border-slate-200 hover:border-teal-500 hover:shadow-md transition cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 font-bold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-list-check"></i>
+                </span>
+                <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">共 30 題</span>
+              </div>
+              <h4 class="text-base font-bold text-slate-800 group-hover:text-teal-700 transition">全真綜合模擬測驗</h4>
+              <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">完整練習 30 道題目，涵蓋概念選擇、情境判斷、配對與排序題型，最全面診斷學習成效。</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-teal-600">
+              <span>開始綜合測驗</span>
+              <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+
+          <!-- Option 2: Quick 10 Quiz -->
+          <div onclick="startQuiz('random10')" class="bg-white p-5 rounded-2xl border-2 border-slate-200 hover:border-amber-500 hover:shadow-md transition cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 font-bold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-bolt"></i>
+                </span>
+                <span class="text-xs font-semibold px-2.5 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full">快速速查</span>
+              </div>
+              <h4 class="text-base font-bold text-slate-800 group-hover:text-amber-600 transition">10 題隨機快問快答</h4>
+              <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">從 30 題中隨機抽取 10 題進行高效率測驗，適合課前複習與快速 self-check。</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-amber-600">
+              <span>開始隨機抽考</span>
+              <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unit Specific Practice -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+          <h4 class="text-sm font-bold text-slate-700 flex items-center gap-2">
+            <i class="fa-solid fa-bookmark text-indigo-500"></i> 單元主題分項練習
+          </h4>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <button onclick="startQuiz('unit1')" class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-teal-50 hover:border-teal-300 text-left transition group">
+              <div class="text-xs text-slate-400 font-semibold mb-1">第1單元 (12題)</div>
+              <div class="text-sm font-bold text-slate-800 group-hover:text-teal-700">形象好手</div>
+              <div class="text-[11px] text-slate-500 mt-1">儀態禮儀、梳洗保養、服儀</div>
+            </button>
+            <button onclick="startQuiz('unit2')" class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-indigo-50 hover:border-indigo-300 text-left transition group">
+              <div class="text-xs text-slate-400 font-semibold mb-1">第2單元 (11題)</div>
+              <div class="text-sm font-bold text-slate-800 group-hover:text-indigo-700">縫紉巧手</div>
+              <div class="text-[11px] text-slate-500 mt-1">手縫工具、四大針法、扣腳</div>
+            </button>
+            <button onclick="startQuiz('unit3')" class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-rose-50 hover:border-rose-300 text-left transition group">
+              <div class="text-xs text-slate-400 font-semibold mb-1">第3單元 (7題)</div>
+              <div class="text-sm font-bold text-slate-800 group-hover:text-rose-700">改造高手</div>
+              <div class="text-[11px] text-slate-500 mt-1">舊衣改造 Upcycling、企劃步驟</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Settings Bar -->
+        <div class="bg-slate-100/80 p-4 rounded-xl flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm text-slate-600 border border-slate-200">
+          <div class="flex items-center gap-2 font-medium">
+            <i class="fa-solid fa-sliders text-teal-600"></i> 答題反饋設置：
+          </div>
+          <div class="flex items-center gap-4">
+            <label class="flex items-center gap-2 cursor-pointer font-medium">
+              <input type="radio" name="feedback-mode" value="instant" checked class="text-teal-600 focus:ring-teal-500">
+              <span>即時解析 (每題答完顯示答案與解析)</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer font-medium">
+              <input type="radio" name="feedback-mode" value="exam" class="text-teal-600 focus:ring-teal-500">
+              <span>模擬考場 (全數答完統一看結果)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREEN 2: Active Quiz Area -->
+    <div id="quiz-screen" class="hidden space-y-5">
+      <!-- Quiz Header Bar -->
+      <div class="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span id="quiz-unit-badge" class="px-3 py-1 rounded-md text-xs font-bold bg-teal-100 text-teal-800">
+            單元標籤
+          </span>
+          <span id="quiz-progress-text" class="text-sm font-bold text-slate-700">
+            題目 1 / 30
+          </span>
+        </div>
+        <div class="flex items-center gap-4 text-xs font-semibold">
+          <div class="flex items-center gap-1.5 text-slate-500">
+            <i class="fa-solid fa-clock text-amber-500"></i> 用時：<span id="timer-text" class="text-slate-800 font-mono text-sm">00:00</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-500">
+            難度：<span id="quiz-difficulty-badge" class="px-2 py-0.5 rounded text-[11px] bg-slate-100 text-slate-700">基礎</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+        <div id="progress-bar-fill" class="bg-gradient-to-r from-teal-500 to-emerald-500 h-full w-0 transition-all duration-300"></div>
+      </div>
+
+      <!-- Question Box -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm space-y-6">
+        <!-- Question Meta & Prompt -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-100 pb-2">
+            <span id="quiz-concept-text"><i class="fa-solid fa-bullseye text-teal-500 mr-1"></i> 核心概念：手縫工具規格與號數原則</span>
+            <span id="quiz-source-text"><i class="fa-solid fa-book-open text-indigo-400 mr-1"></i> 課本第 69 頁</span>
+          </div>
+          <h3 id="question-text" class="text-lg md:text-xl font-bold text-slate-800 leading-relaxed">
+            題目載入中...
+          </h3>
+        </div>
+
+        <!-- Options Container -->
+        <div id="options-container" class="space-y-3 pt-2">
+          <!-- Dynamic Options rendered here -->
+        </div>
+
+        <!-- Instant Feedback Box (Hidden until answered in instant mode) -->
+        <div id="instant-explanation-box" class="hidden p-4 md:p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5 animate-fadeIn">
+          <div class="flex items-center gap-2 font-bold text-sm" id="feedback-title">
+            <!-- Icon & Correct/Incorrect Title -->
+          </div>
+          <p id="feedback-explanation" class="text-xs md:text-sm text-slate-700 leading-relaxed">
+            <!-- Explanation Text -->
+          </p>
+          <div id="feedback-misconception" class="text-xs text-amber-700 bg-amber-50 p-2.5 rounded-lg border border-amber-200">
+            <!-- Misconception info -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation & Action Buttons -->
+      <div class="flex items-center justify-between pt-2">
+        <button id="btn-prev" onclick="prevQuestion()" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 bg-white hover:bg-slate-50 font-medium text-xs md:text-sm transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+          <i class="fa-solid fa-chevron-left"></i> 上一題
+        </button>
+
+        <button id="btn-next" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs md:text-sm shadow-sm transition flex items-center gap-2">
+          下一題 <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <button id="btn-submit" onclick="submitQuiz()" class="hidden px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs md:text-sm shadow-md transition flex items-center gap-2">
+          <i class="fa-solid fa-paper-plane"></i> 完成交卷
+        </button>
+      </div>
+    </div>
+
+    <!-- SCREEN 3: Results & Diagnostic Screen -->
+    <div id="results-screen" class="hidden space-y-6">
+      <!-- Result Score Summary Header -->
+      <div class="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-sm text-center space-y-4 relative overflow-hidden">
+        <div class="inline-flex items-center justify-center p-3 rounded-2xl bg-teal-50 text-teal-600 mb-1">
+          <i class="fa-solid fa-award text-4xl"></i>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">測驗完成！學習診斷報告</h2>
+        <p class="text-xs md:text-sm text-slate-500 max-w-lg mx-auto">
+          恭喜你完成「生活新人王」綜合測試！以下是你的答題成果與各主題概念精通度統計。
+        </p>
+
+        <!-- Main Score Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto pt-2">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span class="text-xs text-slate-500 font-semibold block">最終得分</span>
+            <span id="res-score" class="text-2xl md:text-3xl font-black text-teal-600">0</span>
+            <span class="text-[10px] text-slate-400">/ 100 分</span>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span class="text-xs text-slate-500 font-semibold block">正確率</span>
+            <span id="res-accuracy" class="text-2xl md:text-3xl font-black text-emerald-600">0%</span>
+            <span id="res-count-detail" class="text-[10px] text-slate-400">0 / 0 題</span>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span class="text-xs text-slate-500 font-semibold block">總耗時</span>
+            <span id="res-time" class="text-2xl md:text-3xl font-black text-amber-500">00:00</span>
+            <span class="text-[10px] text-slate-400">完成時間</span>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span class="text-xs text-slate-500 font-semibold block">評價等級</span>
+            <span id="res-grade" class="text-lg md:text-xl font-bold text-indigo-600 mt-1 block">評估中</span>
+          </div>
+        </div>
+
+        <div class="pt-2 flex justify-center gap-3">
+          <button onclick="goHome()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl font-bold text-xs md:text-sm transition flex items-center gap-2">
+            <i class="fa-solid fa-rotate-left"></i> 重新測驗
+          </button>
+        </div>
+      </div>
+
+      <!-- Unit Mastery Breakdown -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+        <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-chart-pie text-teal-600"></i> 三大單元學習成效診斷
+        </h3>
+        <div class="grid md:grid-cols-3 gap-4" id="unit-breakdown-container">
+          <!-- Rendered via JavaScript -->
+        </div>
+      </div>
+
+      <!-- Question Review List -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
+          <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass text-indigo-600"></i> 試題逐題複習與課本解析
+          </h3>
+          <div class="flex items-center gap-2 text-xs">
+            <button onclick="filterReview('all')" id="btn-filter-all" class="px-3 py-1.5 rounded-lg bg-slate-800 text-white font-medium">全部題目</button>
+            <button onclick="filterReview('wrong')" id="btn-filter-wrong" class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium">僅看錯題</button>
+          </div>
+        </div>
+
+        <div id="review-list-container" class="space-y-4">
+          <!-- Dynamic Review Items -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-6 border-t border-slate-800 text-center text-xs mt-10">
+    <div class="max-w-5xl mx-auto px-4 space-y-2">
+      <p class="font-medium text-slate-300">國中綜合活動領域家政教材「第三主題：生活新人王」形成性評量</p>
+      <p class="text-slate-500">涵蓋第1單元形象好手、第2單元縫紉巧手、第3單元改造高手 · 遵守性別平等與不歧視原則</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript Logic -->
+  <script>
+    // ------------------------------------------------------------------------
+    // Complete 30 Questions Dataset directly from Home Economics Curriculum
+    // ------------------------------------------------------------------------
+    const allQuestions = [
+      {
+        id: 1,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動1 手縫充電站",
+        page: "第69頁",
+        difficulty: "基礎",
+        concept: "手縫工具規格與號數原則",
+        type: "choice",
+        question: "選購手縫針與手縫線時，包裝上標示的「號數」與針線粗細有何關係？",
+        options: [
+          { key: "A", text: "(A) 號數愈大，針與線愈粗" },
+          { key: "B", text: "(B) 號數愈大，針與線愈細" },
+          { key: "C", text: "(C) 號數與粗細無關，僅代表生產長度" },
+          { key: "D", text: "(D) 針的號數愈大愈粗，線的號數愈大愈細" }
+        ],
+        correctAnswer: "B",
+        explanation: "依據教材「手縫充電站」工具介紹，手縫針與手縫線的號數選擇原則皆為「號數愈大，針/線愈細」。",
+        misconception: "常見迷思：直覺認為數字（號數）愈大，物品尺寸或粗細就應該愈大。"
+      },
+      {
+        id: 2,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動1 手縫充電站",
+        page: "第69頁",
+        difficulty: "基礎",
+        concept: "布剪的正確操作與保養規範",
+        type: "choice",
+        question: "在使用專門剪裁布料的「布剪」時，下列哪一項握持與使用方式最符合安全與維護銳利度的規範？",
+        options: [
+          { key: "A", text: "(A) 抓握時平直端朝下，貼平桌面剪裁布料，且不宜拿來剪紙" },
+          { key: "B", text: "(B) 抓握時彎曲端朝下，懸空剪裁布料，並可隨時拿來剪影印紙" },
+          { key: "C", text: "(C) 為保持鋒利，每次剪布前應先剪幾張硬紙板試刀" },
+          { key: "D", text: "(D) 布剪與一般文具剪刀功能完全一樣，可混合使用" }
+        ],
+        correctAnswer: "A",
+        explanation: "布剪為剪布專用，平直端朝下抓握有利於貼平桌面剪布；不宜拿來剪紙或做其他用途，以保持剪刀銳利度。",
+        misconception: "常見迷思：認為所有剪刀材質皆相同，忽視布剪剪紙會變鈍的特性。"
+      },
+      {
+        id: 3,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動2 梳洗有一套",
+        page: "第61頁",
+        difficulty: "基礎",
+        concept: "正確洗臉水溫與清潔步驟",
+        type: "choice",
+        question: "洗臉時選擇合適的水溫能達到良好的清潔效果。下列關於洗臉水溫與步驟的敘述，何者正確？",
+        options: [
+          { key: "A", text: "(A) 應使用45℃以上的高溫熱水，才能徹底融化臉部油脂" },
+          { key: "B", text: "(B) 應用乾淨的手捧起約30–35℃的無感溫水將臉打溼，以打開毛孔" },
+          { key: "C", text: "(C) 洗劑應直接塗抹於乾臉上用力搓洗，不必預先打溼" },
+          { key: "D", text: "(D) 沖洗洗劑後，應使用熱毛巾用力搓揉臉部以乾爽" }
+        ],
+        correctAnswer: "B",
+        explanation: "洗臉第一步是用乾淨的手捧起約30–35℃的無感溫水打溼臉部打開毛孔；洗劑需在手掌搓揉起泡後按摩，最後用毛巾輕輕拍壓拭乾。",
+        misconception: "常見迷思：誤以為水溫愈高去油力愈強，或是洗完臉要用力擦拭才乾淨。"
+      },
+      {
+        id: 4,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動2 梳洗有一套",
+        page: "第60頁",
+        difficulty: "進階",
+        concept: "油性膚質之清潔與保養原則",
+        type: "choice",
+        question: "青春期時若臉部皮脂腺分泌旺盛、毛孔粗大且容易冒青春痘，在選擇洗臉產品與保養時，下列何者最合適？",
+        options: [
+          { key: "A", text: "(A) 選擇含有大量酒精與高濃度的油性乳霜塗抹" },
+          { key: "B", text: "(B) 選擇無皂鹼、清爽型且含有消炎殺菌成分的洗劑，維持油水平衡" },
+          { key: "C", text: "(C) 每天洗臉5次以上，並完全不需飲水或注意飲食" },
+          { key: "D", text: "(D) 選擇含有重香精與高色素的高滋潤型洗劑" }
+        ],
+        correctAnswer: "B",
+        explanation: "油性皮膚皮脂腺分泌旺盛，應選擇無皂鹼、清爽型洗劑（含消炎殺菌成分）以達到油水平衡，並注重清潔保溼與少吃油炸辣食。",
+        misconception: "常見迷思：以為出油就要過度清潔，或忽視清爽型與無皂鹼成分的重要性。"
+      },
+      {
+        id: 5,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動1與活動2",
+        page: "第68, 72頁",
+        difficulty: "基礎",
+        concept: "回針縫之特性與衣物修補應用",
+        type: "choice",
+        question: "下課打籃球時，如果褲襠部位的縫線裂開，需要高牢固度的縫法來修補，應該優先選擇哪一種手縫法？",
+        options: [
+          { key: "A", text: "(A) 平針縫" },
+          { key: "B", text: "(B) 斜針縫" },
+          { key: "C", text: "(C) 回針縫" },
+          { key: "D", text: "(D) 交叉縫" }
+        ],
+        correctAnswer: "C",
+        explanation: "回針縫一進一退，牢固度極高（可代替縫紉機），最適合用於受力較大、如褲襠破裂的修補情境。",
+        misconception: "常見迷思：以為所有布料縫合都用最簡單的平針縫即可，忽視受力部位需要高牢固度的回針縫。"
+      },
+      {
+        id: 6,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1 禮儀要周到",
+        page: "第55頁",
+        difficulty: "基礎",
+        concept: "日常姿態與骨骼健康關係",
+        type: "choice",
+        question: "日常站立或行走時，若長期維持不良姿態（如八字站立、腳尖內外張或彎腰駝背），主要會對生理健康造成什麼負面影響？",
+        options: [
+          { key: "A", text: "(A) 會導致骨盆腔歪斜或脊椎受損" },
+          { key: "B", text: "(B) 會使手縫針號數自動變大" },
+          { key: "C", text: "(C) 會使膚質立刻轉變成乾性皮膚" },
+          { key: "D", text: "(D) 只影響外觀，對生理健康完全沒有影響" }
+        ],
+        correctAnswer: "A",
+        explanation: "正確站姿與走姿需抬頭挺胸收小腹，若低頭、東張西望或腳尖外張成八字，容易發生意外並造成骨盆腔歪斜或脊椎傷害。",
+        misconception: "常見迷思：認為姿勢不良頂多「不好看」，不知道會對骨盆與脊椎造成實際生理傷害。"
+      },
+      {
+        id: 7,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1 禮儀要周到",
+        page: "第56頁",
+        difficulty: "基礎",
+        concept: "遞物與接物之禮儀規範",
+        type: "choice",
+        question: "在日常生活中向老師或同學遞交作業簿、課本或書籍時，下列何者符合正確的禮儀規範？",
+        options: [
+          { key: "A", text: "(A) 眼睛看著別處，用單手將作業簿遞給對方" },
+          { key: "B", text: "(B) 眼睛看著對方，以雙手遞物，且書籍文字正面朝向對方" },
+          { key: "C", text: "(C) 將書籍文字倒置遞出，方便自己閱讀" },
+          { key: "D", text: "(D) 直接將作業簿拋扔至對方桌上以節省時間" }
+        ],
+        correctAnswer: "B",
+        explanation: "遞物與接物時應眼睛看著對方、以雙手遞接；遞交作業簿或書籍時，文字正面應朝向對方。",
+        misconception: "常見迷思：遞東西時只圖自己方便（文字朝自己或單手隨意拿取）。"
+      },
+      {
+        id: 8,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動1 手縫充電站",
+        page: "第69頁",
+        difficulty: "基礎",
+        concept: "頂針器之功能與使用法",
+        type: "choice",
+        question: "當縫製牛仔布或帆布等較厚硬的布料時，針尖難以穿透，手掌推針容易刺痛。此時應將哪一種工具套在持針的中指上？",
+        options: [
+          { key: "A", text: "(A) 穿線器" },
+          { key: "B", text: "(B) 頂針器" },
+          { key: "C", text: "(C) 拆線器" },
+          { key: "D", text: "(D) 錐子" }
+        ],
+        correctAnswer: "B",
+        explanation: "當布料較厚或較硬時，將頂針器套在持針的中指，可防止針尾滑落或刺痛手指。",
+        misconception: "常見迷思：混淆頂針器與穿線器或錐子的用途。"
+      },
+      {
+        id: 9,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1 禮儀要周到",
+        page: "第57頁",
+        difficulty: "進階",
+        concept: "交通禮儀中汽車座位之尊卑次序",
+        type: "choice",
+        question: "搭乘專人駕駛的汽車時，座位有尊卑次序之分。依據教材圖示，最尊貴的座位（位置1）通常位於何處？",
+        options: [
+          { key: "A", text: "(A) 駕駛座旁的副駕駛座" },
+          { key: "B", text: "(B) 後排右側座位" },
+          { key: "C", text: "(C) 後排中間座位" },
+          { key: "D", text: "(D) 前排中間座位" }
+        ],
+        correctAnswer: "B",
+        explanation: "依據教材交通禮儀之汽車座位尊卑次序圖示（尊卑順序為1、2、3、4），1號位（最尊位）為後排右側座位。",
+        misconception: "常見迷思：誤以為前座副駕駛座一定是最尊貴的位置。"
+      },
+      {
+        id: 10,
+        unitKey: "unit3",
+        unitName: "第3單元 改造高手",
+        activity: "活動1與活動2",
+        page: "第78, 82頁",
+        difficulty: "基礎",
+        concept: "舊衣改造（Upcycling）與永續生活理念",
+        type: "choice",
+        question: "將舊牛仔褲改造成圍裙，或是將舊毛巾做成午安枕套，這種「Upcycling（舊衣改造）」實踐的主要價值為何？",
+        options: [
+          { key: "A", text: "(A) 浪費時間與材料，不如買新的" },
+          { key: "B", text: "(B) 重新賦予舊物生命與價值，展現美感創意並減少環境負擔" },
+          { key: "C", text: "(C) 只能在學校交作業，生活中完全無實用性" },
+          { key: "D", text: "(D) 為了證明自己不需要買任何新衣服" }
+        ],
+        correctAnswer: "B",
+        explanation: "舊衣改造（Upcycling）能將既有服裝或物品縫補修改，重新賦予特色與用途，不僅節省資源，更能展現創意美感並達到環保永續。",
+        misconception: "常見迷思：認為舊東西瑕疵了就該直接扔掉，忽視手縫改造的永續價值。"
+      },
+      {
+        id: 11,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動2 巧手練功坊",
+        page: "第73頁",
+        difficulty: "進階",
+        concept: "鈕扣縫「扣腳」之作用與技術細節",
+        type: "choice",
+        question: "在進行「鈕扣縫」時，為什麼要在鈕扣與布面之間繞線3圈做成「扣腳」？",
+        options: [
+          { key: "A", text: "(A) 為了防止鈕扣被小偷拔走" },
+          { key: "B", text: "(B) 預留衣服扣合時的布料厚度空間，使扣合順暢平整" },
+          { key: "C", text: "(C) 純粹為了消耗多餘的手縫線" },
+          { key: "D", text: "(D) 避免針尖刺到衣服背面的口袋" }
+        ],
+        correctAnswer: "B",
+        explanation: "縫鈕扣時，在鈕扣與布料之間預留距離並用線繞三圈形成「扣腳」，能留出另一片布料扣合時所需的空間。",
+        misconception: "常見迷思：以為鈕扣要死死貼緊布面縫緊才是對的，不知道沒有扣腳會導致扣衣服時拉扯皺褶。"
+      },
+      {
+        id: 12,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動2 梳洗有一套",
+        page: "第60頁",
+        difficulty: "進階",
+        concept: "乾性膚質保養與產品選擇",
+        type: "choice",
+        question: "乾性皮膚容易因為皮脂腺分泌不足而出現脫皮或乾燥現象。在保養產品的選擇上，下列何者正確？",
+        options: [
+          { key: "A", text: "(A) 選擇含有大量酒精與高去油成分的洗劑" },
+          { key: "B", text: "(B) 選擇保溼滋潤型洗劑，避開酒精、香料與色素，並在使用補水產品後以乳液鎖水" },
+          { key: "C", text: "(C) 每天用滾燙熱水洗臉四次以補充水分" },
+          { key: "D", text: "(D) 只塗抹高粉感的彩妝，不進行任何保溼" }
+        ],
+        correctAnswer: "B",
+        explanation: "乾性皮膚應選擇保溼滋潤型洗劑，避開酒精、香料和色素；補充水份後需使用含油脂或鎖水性的乳液鎖住水分。",
+        misconception: "常見迷思：誤以為乾性肌膚只需要補水，不知道還需要含油脂或鎖水乳液來「鎖水」。"
+      },
+      {
+        id: 13,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1 禮儀要周到",
+        page: "第56頁",
+        difficulty: "基礎",
+        concept: "正確拾物姿態與人體工學",
+        type: "choice",
+        question: "地上有物品掉落需要拾起時，下列哪一種姿勢既合乎禮儀又能避免脊椎受傷？",
+        options: [
+          { key: "A", text: "(A) 雙腿直立不彎曲，直接彎腰並將臀部高高翹起" },
+          { key: "B", text: "(B) 兩腿呈一前一後，後腿半蹲，背部保持直立蹲下取物" },
+          { key: "C", text: "(C) 邊走邊用腳尖將物品踢到面前再用單手抓取" },
+          { key: "D", text: "(D) 趴在地上將伸手拿取" }
+        ],
+        correctAnswer: "B",
+        explanation: "正確拾物姿勢為兩腿呈一前一後，後腿半蹲，背部保持直立蹲下取物；切勿臀部翹高直腰彎身，以防脊椎受傷與不雅觀。",
+        misconception: "常見迷思：習慣直接彎腰撿東西，忽略了直腰彎身對腰椎的負擔與姿態雅觀。"
+      },
+      {
+        id: 14,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動2 資訊補給站",
+        page: "第74頁",
+        difficulty: "進階",
+        concept: "毛邊縫之功能與應用情境",
+        type: "choice",
+        question: "關於「毛邊縫」的用途，下列敘述何者最完整正確？",
+        options: [
+          { key: "A", text: "(A) 專門用來縫合受力最大的褲襠部位" },
+          { key: "B", text: "(B) 讓布料邊緣不易脫線（止毛邊），可用於布邊裝飾、不織布娃娃縫合或貼布縫" },
+          { key: "C", text: "(C) 正面完全看不見縫線，專用於襯衫鈕扣固定" },
+          { key: "D", text: "(D) 專門用來將牛仔褲裁切成兩半" }
+        ],
+        correctAnswer: "B",
+        explanation: "毛邊縫可使布料不易毛邊（止毛邊），亦可用於布邊裝飾、不織布娃娃縫合及貼布縫。",
+        misconception: "常見迷思：混淆毛邊縫與回針縫或斜針縫的功用。"
+      },
+      {
+        id: 15,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動2 梳洗有一套",
+        page: "第62頁",
+        difficulty: "進階",
+        concept: "正確梳髮與頭皮保健步驟",
+        type: "choice",
+        question: "洗髮與梳理頭髮是日常衛生的重要環節。下列關於梳髮步驟的敘述，何者正確？",
+        options: [
+          { key: "A", text: "(A) 拿尖銳金屬梳直接大力從髮根往髮尾硬拉" },
+          { key: "B", text: "(B) 先由前往後梳順，再低頭由後頸髮根順著頭皮往額頭梳，最後以指腹按摩頭皮" },
+          { key: "C", text: "(C) 頭發濕漉漉時直接用高溫吹風機狂吹髮尾，不需梳開" },
+          { key: "D", text: "(D) 梳頭時只需梳理瀏海，後腦勺頭髮不需清理" }
+        ],
+        correctAnswer: "B",
+        explanation: "梳頭步驟為：Step1由前往後梳順→Step2低頭由後頸髮根順至額頭→Step3左右交替梳→Step4指腹按摩頭皮促進血液循環；濕髮半乾時先梳開髮尾再吹乾頭皮。",
+        misconception: "常見迷思：以為梳頭只是把頭髮梳平，不知道分方向梳理與「指腹按摩頭皮」的作用。"
+      },
+      {
+        id: 16,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1與活動2",
+        page: "第58, 63頁",
+        difficulty: "進階",
+        concept: "浴室使用禮儀與洗澡衛生規範",
+        type: "choice",
+        question: "【情境】小華放學打完籃球滿身大汗回到家，覺得身體黏膩，便立刻衝進浴室洗澡。洗完澡後，他覺得非常舒爽，直接穿著衣服離開浴室去客廳看電視。不久後，同住家人進浴室準備洗澡時，踩到地上大片積水差點滑倒，且排水孔堆積了小華洗頭掉落的髮絲導致排水不順。\n請判斷小華在個人衛生與生活禮儀上有哪些需要改進之處？",
+        options: [
+          { key: "A", text: "(A) 小華完全沒有錯，浴室積水與毛髮本來就該由家人清理" },
+          { key: "B", text: "(B) 洗澡水溫應調至60℃以上，且洗完後無須管浴室狀況" },
+          { key: "C", text: "(C) 小華應在洗澡後用刮水器清理浴室積水，並清理排水孔毛髮，展現體貼共用者的禮儀；且飯前飯後半小時內不宜洗澡" },
+          { key: "D", text: "(D) 小華應該改為每三天洗一次澡以節省水源" }
+        ],
+        correctAnswer: "C",
+        explanation: "教材指出洗澡注意事項包含：飯前飯後半小時內不宜洗澡、水溫不宜過高；洗澡後應主動將浴室積水刮乾並清理排水孔毛髮，此為體貼家人與維持環境安全的起居禮儀。",
+        misconception: "常見迷思：認為個人洗完澡就任務完成，忽視公用浴室清理（刮水、清理毛髮）是基本的生活禮儀與安全維護。"
+      },
+      {
+        id: 17,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動2 資訊補給站",
+        page: "第74頁",
+        difficulty: "挑戰",
+        concept: "裙擺/褲管摺邊修補之針法選擇（斜針縫/交叉縫）",
+        type: "choice",
+        question: "【情境】小美即將上臺代表班級參加校園演講比賽，臨上臺前15分鐘發現校服裙擺有一小段摺邊脫線垂了下來。如果使用回針縫，縫線會直接露在裙子正面形成明顯粗線，影響服儀美觀。\n請分析：小美應選擇教材中的哪一種「基礎手縫法」來處理褲管或裙擺摺邊，才能達到「從正面幾乎看不見縫線」的效果？",
+        options: [
+          { key: "A", text: "(A) 鈕扣縫" },
+          { key: "B", text: "(B) 毛邊縫" },
+          { key: "C", text: "(C) 斜針縫或交叉縫" },
+          { key: "D", text: "(D) 平針縫" }
+        ],
+        correctAnswer: "C",
+        explanation: "斜針縫與交叉縫專用於處理衣物摺邊（如褲管或裙擺脫線、修改長度），其特點是從上層布與下層布微挑紗線穿出，從正面幾乎看不見縫線，能維護服儀得體。",
+        misconception: "常見迷思：無法根據「正面無痕」的特定美觀需求選擇合適針法，誤以為隨便用平針或回針縫過去即可。"
+      },
+      {
+        id: 18,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1 禮儀要周到",
+        page: "第54, 57, 58頁",
+        difficulty: "進階",
+        concept: "拜訪禮儀與手機社交禮貌",
+        type: "choice",
+        question: "【情境】阿明受邀到同學家參加小組討論。到了同學家門口按門鈴進門後，沒有向同學的父母打招呼，直接脫了鞋子衝進房間。討論時同學媽媽端水果進來問候，阿明一邊雙手猛滑手機遊戲，一邊頭也不抬地回答：「嗯，謝謝。」\n根據教材「拜訪與言談禮儀」，阿明的哪些行為不符合禮儀？應如何調整？",
+        options: [
+          { key: "A", text: "(A) 阿明的行為很自然，到朋友家不必拘泥任何禮節" },
+          { key: "B", text: "(B) 阿明應在進門時主動向同學家長打招呼問候；當家長或他人與自己交談時，應暫時收起手機，眼睛看著對方專注回應" },
+          { key: "C", text: "(C) 阿明只要打遊戲贏了，就符合所有禮儀規範" },
+          { key: "D", text: "(D) 阿明應該全程閉嘴不講話，連水果都不可以接" }
+        ],
+        correctAnswer: "B",
+        explanation: "教材規定：拜訪親友遇見家人或長輩應主動招呼問候；與人交談時應專注並留意禮貌，若有訊息或電話，應先向對方致意並將手機收好再專心對話。",
+        misconception: "常見迷思：以為在同儕場合可以完全無視對家長長輩的招呼禮貌，或習慣邊看手機邊跟人講話。"
+      },
+      {
+        id: 19,
+        unitKey: "unit3",
+        unitName: "第3單元 改造高手",
+        activity: "活動1與活動2",
+        page: "第78, 81頁",
+        difficulty: "挑戰",
+        concept: "舊衣改造企劃流程與設計圖（sketch）打樣之重要性",
+        type: "choice",
+        question: "【情境】小傑想將一條變短褪色的舊牛仔褲改造成烹飪圍裙。他拿了布剪就直接在牛仔褲上亂剪一通，結果因為沒有事先測量與規劃，把重要的繫帶剪斷了，導致無法綁在腰上而失敗。\n小傑在進行舊衣改造計畫時，忽略了教材「搜、找、想、畫」中的哪一個關鍵步驟？",
+        options: [
+          { key: "A", text: "(A) 忽略了「搜一搜」：沒有去買新的牛仔褲" },
+          { key: "B", text: "(B) 忽略了「畫一畫」：沒有先繪製設計圖（sketch）、精確測量長寬並用消失筆在布上畫線做記號" },
+          { key: "C", text: "(C) 忽略了「買一買」：沒有花錢請專業裁縫師代工" },
+          { key: "D", text: "(D) 忽略了「扔一扔」：舊衣服本來就該直接扔掉" }
+        ],
+        correctAnswer: "B",
+        explanation: "教材「改造高手」規劃流程包含：1.搜一搜、2.找一找、3.想一想、4.畫一畫（繪製設計圖 sketch / draw a pattern）。實作前必須先在設計圖上記錄尺寸，並用粉片/消失筆在布料上記號畫線，才能確保剪裁正確。",
+        misconception: "常見迷思：以為舊衣改造只要「憑感覺直接剪」，忽視事先繪製設計圖與量測記號是成功關鍵。"
+      },
+      {
+        id: 20,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1 禮儀要周到",
+        page: "第57頁",
+        difficulty: "挑戰",
+        concept: "用餐禮儀、自助餐衛生與骨刺處理規範",
+        type: "choice",
+        question: "【情境】學校午餐夾自助餐時，小林直接用私人筷子在公用菜盤裡挑肉排；回到座位用餐時，一邊大聲跟隔壁同學哈啦一邊嚼食物。吃到魚刺時，直接將魚刺從嘴裡「噗」地一聲吐在餐桌檯面上。\n依據教材「用餐禮儀」與「自助餐規範」，下列哪一項修正建議最為全面正確？",
+        options: [
+          { key: "A", text: "(A) 夾自助餐應使用公用餐具；進食時應閉嘴細嚼，交談音量適中；吐魚刺時應以手掩口吐在手掌中再置於盤內或餐桌上" },
+          { key: "B", text: "(B) 小林的作法完全正確，吃飯就是要隨心所欲" },
+          { key: "C", text: "(C) 只要記得用自己的筷子夾菜即可，吐魚刺可以直接吐在地上" },
+          { key: "D", text: "(D) 吃自助餐應該把所有菜色都堆到最高，吃不完直接倒掉" }
+        ],
+        correctAnswer: "A",
+        explanation: "教材規定用餐禮儀：1.享用自助餐應使用公用餐具夾取適量；2.進食時閉嘴細嚼，安靜用餐；3.吐骨頭、魚刺時，應以手掩口並吐在手掌中，再置於盤內或餐桌上。",
+        misconception: "常見迷思：忽略公用餐具的使用，以及吐魚刺時未「以手掩口吐於手掌」的衛生活動細節。"
+      },
+      {
+        id: 21,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動1 手縫充電站",
+        page: "第69頁",
+        difficulty: "基礎",
+        concept: "基礎手縫工具名稱與功能配對",
+        type: "choice",
+        question: "請將手縫工具 (A)穿線器 (B)拆線器 (C)針插 (D)消失筆 與其功能配對。下列哪一個配對組合完全正確？\n功能：(1)布面畫線記號 (2)細鋼絲輔助穿線 (3)拆除縫線與開啟扣眼 (4)收納針具避免刺傷",
+        options: [
+          { key: "A", text: "(A) A-(2), B-(3), C-(4), D-(1)" },
+          { key: "B", text: "(B) A-(1), B-(2), C-(3), D-(4)" },
+          { key: "C", text: "(C) A-(3), B-(4), C-(1), D-(2)" },
+          { key: "D", text: "(D) A-(4), B-(1), C-(2), D-(3)" }
+        ],
+        correctAnswer: "A",
+        explanation: "依據教材：穿線器利用細鋼絲穿針(2)；拆線器用於拆線/開扣眼(3)；針插收納針具防刺傷(4)；消失筆於布面做記號(1)。",
+        misconception: "常見迷思：混淆穿線器與拆線器的形狀及用途。"
+      },
+      {
+        id: 22,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動2 梳洗有一套",
+        page: "第60頁",
+        difficulty: "基礎",
+        concept: "油性與乾性膚質特徵及保養分類",
+        type: "choice",
+        question: "請將皮膚特徵：(A)皮脂旺盛易冒痘 (B)皮脂不足易脫皮 (C)選無皂鹼清爽洗劑 (D)補充水分並塗乳液鎖水，歸類至「1.油性皮膚」與「2.乾性皮膚」。下列分類何者正確？",
+        options: [
+          { key: "A", text: "(A) 1.油性：(A)(C) ； 2.乾性：(B)(D)" },
+          { key: "B", text: "(B) 1.油性：(B)(D) ； 2.乾性：(A)(C)" },
+          { key: "C", text: "(C) 1.油性：(A)(B) ； 2.乾性：(C)(D)" },
+          { key: "D", text: "(D) 1.油性：(C)(D) ； 2.乾性：(A)(B)" }
+        ],
+        correctAnswer: "A",
+        explanation: "油性膚質皮脂旺盛易冒痘，宜用無皂鹼清爽洗劑(A,C)；乾性膚質皮脂不足易脫皮，宜滋潤保溼並用乳液鎖水(B,D)。",
+        misconception: "常見迷思：以為所有膚質保養方式都一樣，不知道油性與乾性需選用截然不同的洗劑劑型。"
+      },
+      {
+        id: 23,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1 禮儀要周到",
+        page: "第55, 56頁",
+        difficulty: "基礎",
+        concept: "良好與不良日常姿態之分類",
+        type: "choice",
+        question: "請將日常姿態：(A)看書寫字背脊平直靠椅背 (B)坐著時搖晃椅子翹二郎腿 (C)站立時抬頭收下巴脊椎挺直 (D)走路低頭看手機八字步，分類為 OK 或 NG。何者正確？",
+        options: [
+          { key: "A", text: "(A) OK：(A)(C) ； NG：(B)(D)" },
+          { key: "B", text: "(B) OK：(B)(D) ； NG：(A)(C)" },
+          { key: "C", text: "(C) OK：(A)(B) ； NG：(C)(D)" },
+          { key: "D", text: "(D) OK：(C)(D) ； NG：(A)(B)" }
+        ],
+        correctAnswer: "A",
+        explanation: "正確姿態需脊椎挺直靠椅背、抬頭挺胸(A,C)；搖晃椅子、翹二郎腿、抖腳、走路八字或滑手機均為 NG 姿態(B,D)。",
+        misconception: "常見迷思：習慣將翹二郎腿或抖腳當作放鬆表現，忽視其為不符禮儀且傷害骨骼的 NG 行為。"
+      },
+      {
+        id: 24,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動1與活動2",
+        page: "第68, 72-74頁",
+        difficulty: "進階",
+        concept: "四大基本手縫法與應用情境配對",
+        type: "choice",
+        question: "請將手縫技法 (A)回針縫 (B)鈕扣縫 (C)斜針/交叉縫 (D)毛邊縫 與情境配對：(1)褲管裙擺無痕摺邊 (2)不織布娃娃止毛邊 (3)運動褲襠裂開高牢固接合 (4)襯衫扣子預留扣腳。何者正確？",
+        options: [
+          { key: "A", text: "(A) A-(3), B-(4), C-(1), D-(2)" },
+          { key: "B", text: "(B) A-(1), B-(2), C-(3), D-(4)" },
+          { key: "C", text: "(C) A-(4), B-(3), C-(2), D-(1)" },
+          { key: "D", text: "(D) A-(2), B-(1), C-(4), D-(3)" }
+        ],
+        correctAnswer: "A",
+        explanation: "回針縫牢固用於褲襠(3)；鈕扣縫固定扣子並預留扣腳(4)；斜針/交叉縫用於裙擺褲管無痕摺邊(1)；毛邊縫用於止毛邊與不織布娃娃縫合(2)。",
+        misconception: "常見迷思：無法將手縫技法名稱與具體生活修補需求精準對應。"
+      },
+      {
+        id: 25,
+        unitKey: "unit2",
+        unitName: "第2單元 縫紉巧手",
+        activity: "活動1 手縫充電站",
+        page: "第69頁",
+        difficulty: "進階",
+        concept: "手縫針線號數與布料厚薄之搭配原則",
+        type: "choice",
+        question: "關於針線號數與粗細：\n(A)薄布選大號數針(較細) (B)厚帆布選大號數線(較細) (C)號數愈大代表尺寸直徑愈粗 (D)手縫線通常比車縫線略粗。\n請判斷 A, B, C, D 各為正確或錯誤？",
+        options: [
+          { key: "A", text: "(A) A:正確, B:錯誤, C:錯誤, D:正確" },
+          { key: "B", text: "(B) A:錯誤, B:正確, C:正確, D:錯誤" },
+          { key: "C", text: "(C) A:正確, B:正確, C:錯誤, D:錯誤" },
+          { key: "D", text: "(D) A:錯誤, B:錯誤, C:正確, D:正確" }
+        ],
+        correctAnswer: "A",
+        explanation: "教材規定「號數愈大，針/線愈細」。薄布配細針細線（大號數）；厚布配粗針粗線（小號數）。手縫線比車縫線略粗。因此 B 錯（厚布需小號數粗線），C 錯。",
+        misconception: "常見迷思：混淆「厚布配粗線（小號數）」的逆向邏輯關係。"
+      },
+      {
+        id: 26,
+        unitKey: "unit3",
+        unitName: "第3單元 改造高手",
+        activity: "活動1 搜/找/想/畫",
+        page: "第78, 79頁",
+        difficulty: "基礎",
+        concept: "舊衣改造企劃四步驟名稱與內容配對",
+        type: "choice",
+        question: "請將舊衣改造四步驟 (A)搜一搜 (B)找一找 (C)想一想 (D)畫一畫 與動作配對：(1)繪製設計圖sketch (2)尋找參考範例資料 (3)盤點現有舊衣素材 (4)思考改造需求與目的。何者正確？",
+        options: [
+          { key: "A", text: "(A) A-(3), B-(2), C-(4), D-(1)" },
+          { key: "B", text: "(B) A-(1), B-(2), C-(3), D-(4)" },
+          { key: "C", text: "(C) A-(2), B-(3), C-(1), D-(4)" },
+          { key: "D", text: "(D) A-(4), B-(1), C-(2), D-(3)" }
+        ],
+        correctAnswer: "A",
+        explanation: "改造流程為：1.搜一搜（搜集素材3）→2.找一找（找資料2）→3.想一想（想需求與目的4）→4.畫一畫（繪製設計圖 sketch 1）。",
+        misconception: "常見迷思：跳過「想一想」與「畫一畫」，誤以為拿了舊衣服就可以直接動刀剪裁。"
+      },
+      {
+        id: 27,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動1 禮儀要周到",
+        page: "第57, 58頁",
+        difficulty: "基礎",
+        concept: "生活社交禮儀之場景分類",
+        type: "choice",
+        question: "請將禮儀規範：(A)進食閉嘴細嚼喝湯安靜 (B)進家人房間先敲門 (C)享用自助餐用公用餐具 (D)搭電梯靠兩側手機靜音，歸類至「1.飲食禮儀」與「2.起居與公共場所禮儀」。何者正確？",
+        options: [
+          { key: "A", text: "(A) 1.飲食：(A)(C) ； 2.起居公共：(B)(D)" },
+          { key: "B", text: "(B) 1.飲食：(B)(D) ； 2.起居公共：(A)(C)" },
+          { key: "C", text: "(C) 1.飲食：(A)(B) ； 2.起居公共：(C)(D)" },
+          { key: "D", text: "(D) 1.飲食：(C)(D) ； 2.起居公共：(A)(B)" }
+        ],
+        correctAnswer: "A",
+        explanation: "細嚼慢嚥與自助餐公用餐具屬於飲食禮儀(A,C)；進房敲門與電梯靜音屬於起居及公共場所禮儀(B,D)。",
+        misconception: "常見迷思：混淆不同生活場景下的專屬禮貌規範。"
+      },
+      {
+        id: 28,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動2 梳洗有一套",
+        page: "第61頁",
+        difficulty: "進階",
+        concept: "洗臉五步驟之正確邏輯順序",
+        type: "choice",
+        question: "請將「正確洗臉五步驟」動作：(A)毛巾輕拍壓乾 (B)洗劑加水起泡 (C)捧30–35℃溫水打溼 (D)溫水沖淨泡沫 (E)指腹螺旋按摩全臉，按時間順序排列。何者正確？",
+        options: [
+          { key: "A", text: "(A) C → B → E → D → A" },
+          { key: "B", text: "(B) B → C → E → D → A" },
+          { key: "C", text: "(C) C → E → B → D → A" },
+          { key: "D", text: "(D) A → C → B → E → D" }
+        ],
+        correctAnswer: "A",
+        explanation: "洗臉正確5步驟為：Step1捧溫水打溼(C) → Step2洗劑搓揉起泡(B) → Step3指腹螺旋按摩全臉(E) → Step4溫水沖淨(D) → Step5毛巾輕拍擦乾(A)。",
+        misconception: "常見迷思：誤將「洗劑直接上乾臉（忽略先打溼）」或「用毛巾用力擦拭」置於錯誤順序。"
+      },
+      {
+        id: 29,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動3 服裝好形象",
+        page: "第66, 67頁",
+        difficulty: "基礎",
+        concept: "校服服儀 OK 與 NG 辨識",
+        type: "choice",
+        question: "請將服儀狀況：(A)鈕扣扣齊下擺收好 (B)鈕扣脫落未補衣角皺褶帶油污 (C)微小脫線主動手縫修補 (D)穿污損髒亂校服參加頒獎典禮，分類為 OK 與 NG。何者正確？",
+        options: [
+          { key: "A", text: "(A) OK：(A)(C) ； NG：(B)(D)" },
+          { key: "B", text: "(B) OK：(B)(D) ； NG：(A)(C)" },
+          { key: "C", text: "(C) OK：(A)(B) ； NG：(C)(D)" },
+          { key: "D", text: "(D) OK：(C)(D) ； NG：(A)(B)" }
+        ],
+        correctAnswer: "A",
+        explanation: "校服應乾淨整潔、鈕扣完整得體(A,C)；鈕扣脫落、衣角皺褶髒污或不合時宜的穿著會嚴重破壞第一印象(B,D)。",
+        misconception: "常見迷思：認為服裝破損或扣子掉了不影響個人形象，忽略了細節對第一印象的決定性作用。"
+      },
+      {
+        id: 30,
+        unitKey: "unit1",
+        unitName: "第1單元 形象好手",
+        activity: "活動2 梳洗有一套",
+        page: "第62頁",
+        difficulty: "挑戰",
+        concept: "梳頭與頭皮保健之正確步驟順序",
+        type: "choice",
+        question: "請將「日常梳頭與頭皮保養步驟」：(A)低頭由後頸髮根順至額頭 (B)由前往後整體梳順 (C)指腹按摩頭皮 (D)左右交替梳理，按正確順序排列。何者正確？",
+        options: [
+          { key: "A", text: "(A) B → A → D → C" },
+          { key: "B", text: "(B) A → B → C → D" },
+          { key: "C", text: "(C) C → B → A → D" },
+          { key: "D", text: "(D) B → D → C → A" }
+        ],
+        correctAnswer: "A",
+        explanation: "梳頭步驟為：Step1由前往後梳順(B) → Step2低頭由後頸順至額頭(A) → Step3左右交替梳理(D) → Step4指腹按摩頭皮(C)。",
+        misconception: "常見迷思：誤以為梳頭只是拿梳子隨便劃兩下，不知道完整的全方位梳理與指腹按摩頭皮步驟。"
+      }
+    ];
+
+    // ------------------------------------------------------------------------
+    // State Management Variables
+    // ------------------------------------------------------------------------
+    let currentQuizQuestions = [];
+    let currentQuestionIndex = 0;
+    let userAnswers = {}; // { questionId: "A" }
+    let feedbackMode = "instant"; // "instant" or "exam"
+    let timerInterval = null;
+    let secondsElapsed = 0;
+
+    // ------------------------------------------------------------------------
+    // App Initialization & Screen Controllers
+    // ------------------------------------------------------------------------
+    function goHome() {
+      clearInterval(timerInterval);
+      document.getElementById('home-screen').classList.remove('hidden');
+      document.getElementById('quiz-screen').classList.add('hidden');
+      document.getElementById('results-screen').classList.add('hidden');
+    }
+
+    function startQuiz(mode) {
+      // 1. Get Feedback Mode setting
+      const modeRadios = document.getElementsByName('feedback-mode');
+      for (let radio of modeRadios) {
+        if (radio.checked) feedbackMode = radio.value;
+      }
+
+      // 2. Filter Questions
+      if (mode === 'all') {
+        currentQuizQuestions = [...allQuestions];
+      } else if (mode === 'random10') {
+        currentQuizQuestions = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 10);
+      } else if (mode === 'unit1' || mode === 'unit2' || mode === 'unit3') {
+        currentQuizQuestions = allQuestions.filter(q => q.unitKey === mode);
+      }
+
+      // 3. Reset State
+      currentQuestionIndex = 0;
+      userAnswers = {};
+      secondsElapsed = 0;
+
+      // 4. Start Timer
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        secondsElapsed++;
+        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+        const secs = String(secondsElapsed % 60).padStart(2, '0');
+        document.getElementById('timer-text').innerText = `${mins}:${secs}`;
+      }, 1000);
+
+      // 5. UI Transitions
+      document.getElementById('home-screen').classList.add('hidden');
+      document.getElementById('results-screen').classList.add('hidden');
+      document.getElementById('quiz-screen').classList.remove('hidden');
+
+      renderQuestion();
+    }
+
+    // ------------------------------------------------------------------------
+    // Render Active Question
+    // ------------------------------------------------------------------------
+    function renderQuestion() {
+      const q = currentQuizQuestions[currentQuestionIndex];
+      const total = currentQuizQuestions.length;
+
+      // Header Meta
+      document.getElementById('quiz-unit-badge').innerText = q.unitName;
+      document.getElementById('quiz-progress-text').innerText = `題目 ${currentQuestionIndex + 1} / ${total}`;
+      document.getElementById('quiz-difficulty-badge').innerText = q.difficulty;
+      document.getElementById('quiz-concept-text').innerHTML = `<i class="fa-solid fa-bullseye text-teal-500 mr-1"></i> 核心概念：${q.concept}`;
+      document.getElementById('quiz-source-text').innerHTML = `<i class="fa-solid fa-book-open text-indigo-400 mr-1"></i> ${q.activity}（${q.page}）`;
+
+      // Progress Bar
+      const pct = ((currentQuestionIndex + 1) / total) * 100;
+      document.getElementById('progress-bar-fill').style.width = `${pct}%`;
+
+      // Question Text
+      document.getElementById('question-text').innerText = q.question;
+
+      // Options
+      const optionsBox = document.getElementById('options-container');
+      optionsBox.innerHTML = '';
+
+      const selectedOption = userAnswers[q.id];
+
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = `w-full text-left p-4 rounded-xl border-2 transition-all flex items-start gap-3 group text-sm md:text-base font-medium `;
+
+        if (selectedOption === opt.key) {
+          btn.className += `border-teal-500 bg-teal-50/80 text-teal-900 shadow-sm`;
+        } else {
+          btn.className += `border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 text-slate-700`;
+        }
+
+        btn.onclick = () => selectOption(q.id, opt.key);
+
+        btn.innerHTML = `
+          <span class="w-6 h-6 rounded-full border border-slate-300 group-hover:border-teal-500 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${selectedOption === opt.key ? 'bg-teal-600 text-white border-teal-600' : 'bg-white text-slate-500'}">
+            ${opt.key}
+          </span>
+          <span class="leading-snug">${opt.text}</span>
+        `;
+
+        optionsBox.appendChild(btn);
+      });
+
+      // Instant Feedback Container Handling
+      const explanationBox = document.getElementById('instant-explanation-box');
+      if (feedbackMode === 'instant' && selectedOption) {
+        explanationBox.classList.remove('hidden');
+        const isCorrect = selectedOption === q.correctAnswer;
+
+        document.getElementById('feedback-title').className = isCorrect ? 'flex items-center gap-2 font-bold text-sm text-emerald-700' : 'flex items-center gap-2 font-bold text-sm text-rose-700';
+        document.getElementById('feedback-title').innerHTML = isCorrect
+          ? `<i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i> 回答正確！`
+          : `<i class="fa-solid fa-circle-xmark text-rose-600 text-lg"></i> 回答錯誤（正確答案為 ${q.correctAnswer}）`;
+
+        document.getElementById('feedback-explanation').innerText = q.explanation;
+        document.getElementById('feedback-misconception').innerText = q.misconception;
+      } else {
+        explanationBox.classList.add('hidden');
+      }
+
+      // Buttons Control
+      document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+
+      if (currentQuestionIndex === total - 1) {
+        document.getElementById('btn-next').classList.add('hidden');
+        document.getElementById('btn-submit').classList.remove('hidden');
+      } else {
+        document.getElementById('btn-next').classList.remove('hidden');
+        document.getElementById('btn-submit').classList.add('hidden');
+      }
+    }
+
+    function selectOption(questionId, key) {
+      userAnswers[questionId] = key;
+      renderQuestion();
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIndex < currentQuizQuestions.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        renderQuestion();
+      }
+    }
+
+    // ------------------------------------------------------------------------
+    // Submit & Compute Results
+    // ------------------------------------------------------------------------
+    function submitQuiz() {
+      clearInterval(timerInterval);
+
+      let correctCount = 0;
+      let totalQuestions = currentQuizQuestions.length;
+
+      // Unit wise statistics
+      let unitStats = {
+        unit1: { name: "第1單元 形象好手", total: 0, correct: 0 },
+        unit2: { name: "第2單元 縫紉巧手", total: 0, correct: 0 },
+        unit3: { name: "第3單元 改造高手", total: 0, correct: 0 }
+      };
+
+      currentQuizQuestions.forEach(q => {
+        const uKey = q.unitKey;
+        if (unitStats[uKey]) unitStats[uKey].total++;
+
+        if (userAnswers[q.id] === q.correctAnswer) {
+          correctCount++;
+          if (unitStats[uKey]) unitStats[uKey].correct++;
+        }
+      });
+
+      const accuracy = Math.round((correctCount / totalQuestions) * 100);
+      const score = Math.round((correctCount / totalQuestions) * 100);
+
+      // Render Summary Data
+      document.getElementById('res-score').innerText = score;
+      document.getElementById('res-accuracy').innerText = `${accuracy}%`;
+      document.getElementById('res-count-detail').innerText = `${correctCount} / ${totalQuestions} 題`;
+
+      const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+      const secs = String(secondsElapsed % 60).padStart(2, '0');
+      document.getElementById('res-time').innerText = `${mins}:${secs}`;
+
+      // Grade Feedback
+      let gradeText = "持續努力！";
+      if (score >= 90) gradeText = "🏆 形象手縫大師";
+      else if (score >= 75) gradeText = "🌟 熟練生活新人王";
+      else if (score >= 60) gradeText = "👍 扎實通關";
+      document.getElementById('res-grade').innerText = gradeText;
+
+      // Confetti Effect for high score
+      if (score >= 80) {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      }
+
+      // Render Unit Breakdown
+      const breakdownBox = document.getElementById('unit-breakdown-container');
+      breakdownBox.innerHTML = '';
+
+      Object.keys(unitStats).forEach(key => {
+        const u = unitStats[key];
+        if (u.total > 0) {
+          const uAcc = Math.round((u.correct / u.total) * 100);
+          const div = document.createElement('div');
+          div.className = "bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2";
+          div.innerHTML = `
+            <div class="flex justify-between items-center text-xs font-bold text-slate-700">
+              <span>${u.name}</span>
+              <span class="text-teal-600">${u.correct}/${u.total} 題 (${uAcc}%)</span>
+            </div>
+            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+              <div class="bg-teal-500 h-full" style="width: ${uAcc}%"></div>
+            </div>
+          `;
+          breakdownBox.appendChild(div);
+        }
+      });
+
+      // Render Review List
+      renderReviewList('all');
+
+      // UI Switch
+      document.getElementById('quiz-screen').classList.add('hidden');
+      document.getElementById('results-screen').classList.remove('hidden');
+    }
+
+    // ------------------------------------------------------------------------
+    // Review List & Filter
+    // ------------------------------------------------------------------------
+    function filterReview(mode) {
+      if (mode === 'all') {
+        document.getElementById('btn-filter-all').className = "px-3 py-1.5 rounded-lg bg-slate-800 text-white font-medium";
+        document.getElementById('btn-filter-wrong').className = "px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium";
+      } else {
+        document.getElementById('btn-filter-wrong').className = "px-3 py-1.5 rounded-lg bg-slate-800 text-white font-medium";
+        document.getElementById('btn-filter-all').className = "px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 font-medium";
+      }
+      renderReviewList(mode);
+    }
+
+    function renderReviewList(filterMode) {
+      const container = document.getElementById('review-list-container');
+      container.innerHTML = '';
+
+      currentQuizQuestions.forEach((q, idx) => {
+        const userAns = userAnswers[q.id] || "未作答";
+        const isCorrect = userAns === q.correctAnswer;
+
+        if (filterMode === 'wrong' && isCorrect) return;
+
+        const card = document.createElement('div');
+        card.className = `p-4 md:p-5 rounded-xl border ${isCorrect ? 'border-slate-200 bg-white' : 'border-rose-200 bg-rose-50/30'} space-y-3`;
+
+        let optionsHtml = q.options.map(o => {
+          let badgeClass = "text-slate-500";
+          if (o.key === q.correctAnswer) badgeClass = "text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded";
+          else if (o.key === userAns && !isCorrect) badgeClass = "text-rose-700 font-bold bg-rose-100 px-2 py-0.5 rounded";
+
+          return `<div class="text-xs md:text-sm ${badgeClass} mb-1">${o.text}</div>`;
+        }).join('');
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div class="space-y-1">
+              <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-600">
+                第 ${idx + 1} 題 · ${q.unitName}
+              </span>
+              <h4 class="text-sm md:text-base font-bold text-slate-800 mt-1">${q.question}</h4>
+            </div>
+            <span class="shrink-0 font-bold text-xs px-2.5 py-1 rounded-full ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+              ${isCorrect ? '✓ 正確' : '✕ 錯誤'}
+            </span>
+          </div>
+
+          <div class="bg-slate-50/80 p-3 rounded-lg space-y-1 border border-slate-100">
+            ${optionsHtml}
+          </div>
+
+          <div class="text-xs text-slate-600 space-y-1.5 pt-1">
+            <div class="font-bold text-teal-700 flex items-center gap-1">
+              <i class="fa-solid fa-book-open"></i> 課本來源解析（${q.activity} · ${q.page}）：
+            </div>
+            <p class="leading-relaxed bg-white p-2.5 rounded-lg border border-slate-200 text-slate-700">${q.explanation}</p>
+            <p class="text-amber-800 bg-amber-50 p-2 rounded border border-amber-200">${q.misconception}</p>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      if (container.children.length === 0) {
+        container.innerHTML = `<div class="text-center py-8 text-slate-400 text-sm">無符合條件的題目！太棒了，你沒有答錯任何題目！</div>`;
+      }
+    }
+  </script>
+</body>
+</html>
